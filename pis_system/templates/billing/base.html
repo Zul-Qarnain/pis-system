@@ -1,0 +1,62 @@
+{% extends 'system_base.html' %}
+{% load bootstrap3 %}
+
+{% block navbar_li %}
+	<li class="active"><a href="#">Billing</a></li>
+	<li><a href="#">Evaluation</a></li>
+{% endblock %}
+
+{% block content %}
+	<table style="margin:0px">
+		<tr>
+			<td class="left-content">
+			{% block left-content %}
+				{% include 'stub.html' %}					
+				<form class="form-search">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<select id="item_search_filters" type="radio">
+								<option value="id_num"/>ID Number
+								<option value="last_name"/>Last Name
+								<option value="first_name"/>First Name
+							</select>
+						</div>
+						<input type="text" class="form-control" placeholder="Search">
+						<span class="input-group-btn">
+							<button class="btn btn-success" type="button">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+					</div><!-- /btn-group -->
+				</form>
+				<table class="table table-hover table-condensed">
+					<caption>Showing 2 of 2 result(s)...</caption>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Name</th>
+							<th>Designation</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr></td>
+							<td>DELFINADO, Jerico Ca
+							<td>201047791esar TABUNGAR</td>
+							<td>HS, 8-A</td>
+						</tr>
+						<tr>
+							<td>201128590</td>
+							<td>CANAZARES, Yvonne AMOLONG</td>
+							<td>HS, 8-A</td>
+						</tr>
+					</tbody>
+				</table>
+			{% endblock %}
+			</td>			
+			<td class="right-content">
+			{% block right-content%}
+			{% endblock %}
+			</td>
+		</tr>
+	</table>
+{% endblock %}

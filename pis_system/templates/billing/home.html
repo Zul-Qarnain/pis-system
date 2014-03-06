@@ -1,0 +1,21 @@
+{% extends './billing/base.html' %}
+
+{% block right-content %}
+<h3>Current Bill</h3>
+<form class="form-search">
+	<div class="input-group">
+		<div class="input-group-addon">
+			<select id="item_search_filters" type="radio">
+				<option value="item_code"/>Item Code
+				<option value="item_name"/>Item Name
+			</select>
+		</div>
+		<input type="text" class="form-control" placeholder="Add an item">
+		<span class="input-group-btn">
+			<button class="btn btn-success" type="button">
+				<span class="glyphicon glyphicon-search"></span>
+			</button>
+		</span>
+	</div><!-- /btn-group -->
+</form>
+{% endblock %}

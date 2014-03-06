@@ -76,9 +76,9 @@ STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
 # Additional locations of static files
-STATICFILES_DIRS = (os.path.join( os.path.dirname( __file__ ), '..', 'templates/static').replace('\\','/'),
-   #'E:/Projects/pis_system/templates/static',
-   # '/home/rasmer/PycharmProjects/pis_system/templates/static',
+STATICFILES_DIRS = (#os.path.join( os.path.dirname( __file__ ), 'static' ),
+   '/home/rasmer/PycharmProjects/pis_system/templates/static',
+    
 )
 
 # List of finder classes that know how to find static files in
@@ -98,7 +98,7 @@ SECRET_KEY = '3wy=@o%!i)exa_1ahexhu)nh2#5r$u2aj+b0q$&ez&w-a=%m#p'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#    'django.template.loaders.eggs.Loader',
+#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -127,7 +127,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'bootstrap3',
     'pis_system',
-    'billing'
 )
 
 # A sample logging configuration. The only tangible logging
