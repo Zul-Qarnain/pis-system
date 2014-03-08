@@ -25,11 +25,18 @@ def login_auth(request):
     global userid
     userid=request.POST.get('userID')
     passwords=request.POST.get('password')
-    username=EMPLOYEE.objects.get(emp_id=userid)
 
-    if username.password==passwords:
-        if username.position=='Faculty':
-            return HttpResponseRedirect('billing')
+    try:
+            username=EMPLOYEE.objects.get(emp_id=userid)
+    except EMPLOYEE.DoesNotExist:
+            username=None
+        
+    if username is None:
+            return HttpResponseRedirect('login')
     else:
-        return HttpResponseRedirect('login')
+            if username.password==passwords:
+                    if username.position=='Faculty':
+                            return HttpResponseRedirect('billing')
+                    else:
+                            return HttpResponseRedirect('login')
 
