@@ -30,7 +30,7 @@ class STUDENT(models.Model):
     last_school_att = models.CharField(max_length=100)
     last_school_att_add = models.CharField(max_length=100)
     acad_status = models.CharField(max_length=45)
-    priv = models.ForeignKey(STUD_PRIV)
+    priv = models.ForeignKey(STUD_PRIV,default=0)
 
 
 class BILL_ITEM(models.Model):    

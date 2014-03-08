@@ -15,7 +15,7 @@
 			<ul type="none">
 			<li style="width:300px; float:left">
 				<!--<h1 style="color: #FFF; padding-left: 20px">Log In</h1>-->
-				<form method="post" action="/billing" style="padding: 20px; padding-left:40px">{% csrf_token %}
+				<form method="post" action="/login_auth" style="padding: 20px; padding-left:40px">{% csrf_token %}
 					{% bootstrap_form form %}
 					{% buttons %}
 						<button type="submit" class="btn btn-primary btn-small">LogIn</button>
