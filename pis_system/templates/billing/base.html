@@ -16,9 +16,9 @@
 					<div class="input-group">
 						<div class="input-group-addon">
 							<select id="item_search_filters" type="radio">
-								<option value="id_num"/>ID Number
-								<option value="last_name"/>Last Name
-								<option value="first_name"/>First Name
+								<option value="id_num"/>ID Number</option>
+								<option value="last_name"/>Last Name</option>
+								<option value="first_name"/>First Name</option>
 							</select>
 						</div>
 						<input type="text" class="form-control" placeholder="Search">
@@ -39,16 +39,17 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr></td>
-							<td>DELFINADO, Jerico Ca
-							<td>201047791esar TABUNGAR</td>
-							<td>HS, 8-A</td>
-						</tr>
-						<tr>
-							<td>201128590</td>
-							<td>CANAZARES, Yvonne AMOLONG</td>
-							<td>HS, 8-A</td>
-						</tr>
+						{% for student in students %}
+							<tr>
+								<td>{{ student.stud_id }}</td>
+								<td>
+										{{ student.lastname}} {{' '}}
+										{{ student.firstname}} {{' '}}
+										{{ student.mi}} {{' '}} 
+								</td>
+								<td>{{ student.last_school_att}}</td>
+							</tr>
+						{% endfor %}
 					</tbody>
 				</table>
 			{% endblock %}

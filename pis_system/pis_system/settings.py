@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-
+SESSION_EXPIRE_AT_BROWSER_CLOSE=True
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -107,6 +107,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -128,6 +129,7 @@ INSTALLED_APPS = (
     'bootstrap3',
     'pis_system',
     'billing'
+
 )
 
 # A sample logging configuration. The only tangible logging

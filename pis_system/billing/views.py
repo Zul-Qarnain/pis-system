@@ -2,41 +2,70 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from pis_system.forms import *
 from pis_system.models import *
-userid=''
 
 def billing(request):
-    #LOGGED_IN=False
-    #userid=request.POST.get('userID')
-    #passwords=request.POST.get('password')
-    username=EMPLOYEE.objects.get(emp_id=userid)
-
-    name=username.firstname+' '+username.mi+' '+username.lastname
-    userID=username.emp_id
-    user = {'name':name, 'id':userID}
-    item_search = ItemSearch()
-    return render(request, './billing/home.html', {'system_name':'Enrolment System', 'user':user, 'item_search':item_search})
-
-
-def login(request):
-    form=LogInForm()
-    return render(request, 'login.html', {'form':form, 'system_name':'Billing System', 'cover_url':'static/images/billing_cover.jpg'})
-
-def login_auth(request):
-    global userid
-    userid=request.POST.get('userID')
-    passwords=request.POST.get('password')
-
-    try:
-            username=EMPLOYEE.objects.get(emp_id=userid)
-    except EMPLOYEE.DoesNotExist:
-            username=None
+    
+    students = STUDENT.objects.order_by('stud_id')
+    userid = request.POST.get('userID')
+    passwords = request.POST.get('password')
+    if request.session.get('is_logged_in', False):
+        user = {'name': request.session['name'], 'id': request.session['userID']}
+        item_search = ItemSearch()
+        return render(
+                        request, 
+                        './billing/home.html', 
+                        {
+                            'system_name': 'Enrolment System', 
+                            'user': user, 
+                            'students': students,
+                            'item_search': item_search
+                        }
+                      )
+    
+    if request.method == 'POST':
         
-    if username is None:
-            return HttpResponseRedirect('login')
-    else:
-            if username.password==passwords:
-                    if username.position=='Faculty':
-                            return HttpResponseRedirect('billing')
-                    else:
-                            return HttpResponseRedirect('login')
+        try:
+            username = EMPLOYEE.objects.get(emp_id = userid)
+        except EMPLOYEE.DoesNotExist:
+            username = None
+        
+        if username is None:
+            form=LogInForm()
+            return render(
+                            request, 
+                            'login.html', 
+                            {
+                                'form': form, 
+                                'system_name': 'Billing System',
+                                'cover_url':'static/images/billing_cover.jpg'
+                            }
+                          )
 
+        else:
+            if username.password == passwords:
+                request.session['is_logged_in'] = True
+                request.session['userID'] = username.emp_id
+                request.session['password'] = username.password
+                request.session['name'] = username.firstname+' '+username.mi+' '+username.lastname
+                user = {'name': request.session['name'], 'id': request.session['userID']}
+                item_search = ItemSearch()
+                return render(
+                                request, 
+                                './billing/home.html', 
+                                {
+                                    'system_name': 'Enrolment System', 
+                                    'user': user, 
+                                    'students': students,
+                                    'item_search': item_search
+                                }
+                              )
+    else:
+            form=LogInForm()
+            return render(
+                            request, 
+                            'login.html', 
+                            {
+                                'form': form, 'system_name': 'Billing System', 
+                                'cover_url': 'static/images/billing_cover.jpg'
+                            }
+                          )

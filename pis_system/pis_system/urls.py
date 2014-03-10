@@ -9,8 +9,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'pis_system.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^login$', login),
-    url(r'^login_auth$', login_auth),
+    #url(r'^login$', login),
+    #url(r'^login_auth$', login_auth),
     url(r'^billing$', billing),
     url(r'^admin/', include(admin.site.urls)),
 )
